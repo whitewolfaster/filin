@@ -15,6 +15,7 @@ type BookRepository interface {
 	FindBookByID(string) (*models.Book, error)
 	BookLiders() (*[]string, error)
 	BooksOfMonth() (*[]string, error)
+	CreateGenre(*models.Genre) error
 }
 
 type UserRepository interface {

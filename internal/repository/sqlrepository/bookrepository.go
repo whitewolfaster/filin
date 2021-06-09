@@ -192,3 +192,14 @@ func (br *BookRepository) BookLiders() (*[]string, error) {
 	}
 	return &books, nil
 }
+
+func (br *BookRepository) CreateGenre(genre *models.Genre) error {
+	_, err := br.repository.db.Exec(
+		"INSERT INTO genres (name) VALUES ($1)",
+		genre.Name,
+	)
+	if err != nil {
+		return err
+	}
+	return nil
+}
