@@ -68,9 +68,12 @@ func (server *Server) Start() error {
 
 	server.configureRouter()
 
-	server.logger.Infof("server started on %s with loglevel '%s'", server.config.Domain+server.config.Port, server.config.LogLevel)
+	server.logger.Infof("server started on %s with loglevel '%s'", server.config.Port, server.config.LogLevel)
 
 	port := os.Getenv("PORT")
+	if port == "" {
+		port = server.config.Port
+	}
 
 	return http.ListenAndServe(":"+port, server.router)
 }

@@ -1,7 +1,6 @@
 package server
 
 type Config struct {
-	Domain        string `toml:"domain"`
 	Port          string `toml:"port"`
 	LogLevel      string `toml:"log_level"`
 	DatabaseURL   string `toml:"database_url"`
@@ -15,7 +14,6 @@ type Config struct {
 
 func NewConfig() *Config {
 	return &Config{
-		Domain:   "",
 		Port:     ":8080",
 		LogLevel: "debug",
 	}
