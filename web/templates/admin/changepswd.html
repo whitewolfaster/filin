@@ -1,0 +1,45 @@
+{{define "changepswd"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <title>ФИЛИН</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            {{template "header" .}}
+        </header>
+        <main class="main__bg">
+            <div class="container">
+                <div class="card">
+                    <div class="login__title title">
+                        Смена пароля
+                    </div>
+                    <div class="form__container">
+                        <div class="info none"></div>
+                        <form>
+                            <div class="form__row">
+                                <div class="input__label">Старый пароль:</div>
+                                <input type="password" id="old">
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Новый пароль</div>
+                                <input type="password" id="new">
+                            </div>
+                            <div class="btn__row">
+                                <div class="submit__btn" id="submit">Сменить</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/js/admin/changepswd.js"></script>
+</body>
+</html>
+{{end}}

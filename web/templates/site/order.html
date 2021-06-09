@@ -1,0 +1,88 @@
+{{define "order"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>ФИЛИН - книжный интернет магазин</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            {{template "header" .}}
+        </header>
+        <main class="main__bg">
+            <div class="container">
+                <div class="form__card">
+                    <div class="login__title title">
+                        Офрмление заказа
+                    </div>
+                    <div class="form__container">
+                        <div class="info none"></div>
+                        <form id="order">
+                            <div class="form__row">
+                                <div class="input__label">Фамилия:</div>
+                                <input type="text" id="firstname">
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Имя:</div>
+                                <input type="text" id="lastname">
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Отчество:</div>
+                                <input type="text" id="patronymic">
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Телефон:</div>
+                                <input type="text" id="phone">
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Адресс:</div>
+                                <input type="text" id="address">
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Город:</div>
+                                <input type="text" id="city">
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Почтовый индекс:</div>
+                                <input type="text" id="postindex">
+                            </div>
+                            <div class="products">
+                                {{range .Cart}}
+                                <div class="order__product">
+                                    <div class="product__info">
+                                        <div class="product__name"><span>Название: </span>{{.Name}}</div>
+                                        <div class="product__author"><span>Автор: </span>{{.Author}}</div>
+                                        <div class="product__pubhouse"><span>Издательство: </span>{{.PubHouse}}</div>
+                                        <div class="price"><span>Цена(за шт.): </span>{{.Price}} руб.</div>
+                                    </div>
+                                    <div class="product__quantity">
+                                        <div class="">Количество: </div>
+                                        <input type="number" min="1" value="1" data-price="{{.Price}}" data-id="{{.ID}}" name="quantity">
+                                    </div>
+                                </div>
+                                {{end}}
+                            </div>
+                            <div class="order__summ">
+                                ИТОГО: <span class="summ"></span>
+                            </div>
+                            <div class="btn__row">
+                                <div class="submit__btn" id="submit">Оформить заказ</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            {{template "footer"}}
+        </footer>
+    </div>
+    <script src="/static/js/order.js"></script>
+    <script src="/static/js/burger.js"></script>
+</body>
+</html>
+{{end}}

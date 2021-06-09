@@ -1,0 +1,79 @@
+{{define "add_book"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <title>ФИЛИН</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            {{template "header" .}}
+        </header>
+        <main class="main__bg">
+            <div class="container">
+                <div class="card">
+                    <div class="login__title title">
+                        Добавить книгу
+                    </div>
+                    <div class="form__container">
+                        <div class="info none"></div>
+                        <div class="form__container">
+                            <div class="form__row">
+                                <div class="input__label">Название: </div>
+                                <input type="text" name="name">
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Автор: </div>
+                                <input type="text" name="author">
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Год: </div>
+                                <input type="number" name="year">
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Жанр: </div>
+                                {{range .Genres}}
+                                <div class="genre__row">
+                                    <input type="checkbox" name="genre" value="{{.Name}}">
+                                    <div class="genre__name">{{.Name}}</div>
+                                </div>
+                                {{end}}
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Издательство: </div>
+                                <input type="text" name="pub_house">
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Описание/Аннотация: </div>
+                                <textarea name="description" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Цена: </div>
+                                <input type="number" name="price">
+                            </div>
+                            <div class="form__row">
+                                <div class="input__label">Обложка: </div>
+                                <form id="file_form" enctype="multipart/form-data" method="post">
+                                    <input type="file" name="cover" />
+                                    <input type="reset" class="reset__btn">
+                                </form>
+                            </div>
+                            <div class="form__row">
+                                <div id="submit" class="submit__btn">
+                                    Отправить
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/js/admin/add_book.js"></script>
+</body>
+</html>
+{{end}}

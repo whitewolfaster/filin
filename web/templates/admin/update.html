@@ -1,0 +1,61 @@
+{{define "update"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить книгу</title>
+</head>
+<body>
+    <div class="form__container">
+        <div class="form__row">
+            <div class="input__label">Название: </div>
+            <input type="text" name="name">
+        </div>
+        <div class="form__row">
+            <div class="input__label">Автор: </div>
+            <input type="text" name="author">
+        </div>
+        <div class="form__row">
+            <div class="input__label">Год: </div>
+            <input type="number" name="year">
+        </div>
+        <div class="form__row">
+            <div class="input__label">Жанр: </div>
+            {{range .}}
+            <div class="genre__row">
+                <input type="checkbox" name="genre" value="{{.Name}}">
+                <div class="genre__name">{{.Name}}</div>
+            </div>
+            {{end}}
+        </div>
+        <div class="form__row">
+            <div class="input__label">Издательство: </div>
+            <input type="text" name="pub_house">
+        </div>
+        <div class="form__row">
+            <div class="input__label">Описание/Аннотация: </div>
+            <textarea name="description" cols="30" rows="10"></textarea>
+        </div>
+        <div class="form__row">
+            <div class="input__label">Цена: </div>
+            <input type="number" name="price">
+        </div>
+        <div class="form__row">
+            <div class="input__label">Обложка: </div>
+            <form id="file_form" enctype="multipart/form-data" method="post">
+                <input type="file" name="cover" />
+            </form>
+        </div>
+        <div class="form__row">
+            <div id="submit" class="submit__btn">
+                Отправить
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/update.js"></script>
+</body>
+</html>
+
+{{end}}

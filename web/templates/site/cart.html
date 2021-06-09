@@ -1,0 +1,75 @@
+{{define "cart"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>ФИЛИН - книжный интернет магазин</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            {{template "header" .}}
+        </header>
+        <main class="main__bg">
+            <div class="container">
+                <div class="main__row">
+                    <div class="book__container cart__bg">
+                        <div class="empty none">Корзина пуста</div>
+                        <div class="cart__row">
+                            <div class="order__btn">Оформить заказ</div>
+                            <div class="clear__btn">Очистить корзину</div>
+                        </div>
+                        {{range .Books}}
+                            <div class="book__card">
+                                <div class="book__card__row">
+                                    <div class="book__cover">
+                                        <img src="{{.CoverPath}}" alt="">
+                                    </div>
+                                    <div class="book__body">
+                                        <div class="book__name">{{.Name}}</div>
+                                        <div class="book_info">
+                                            <div class="book__author">
+                                                <span class="info__label">Автор: </span> {{.Author}}
+                                            </div>
+                                            <div class="book__pubhouse">
+                                                <span class="info__label">Издательство: </span>
+                                                {{.PubHouse}}
+                                            </div>
+                                            <div class="book__genres">
+                                                <span class="info__label">Жанры: </span>
+                                                {{.Genre}}
+                                            </div>
+                                            <div class="book__year"><span class="info__label">Год: </span>{{.Year}}</div>
+                                            <div class="book_description">
+                                                {{.Description}}
+                                            </div>
+                                        </div>
+                                        <div class="book__price">
+                                            <div class="price">{{.Price}} руб.</div>
+                                            <div class="cart_info none"></div>
+                                            <div class="cart__btn" data-book-id="{{.ID}}">Удалить</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{end}}
+                        <div class="cart__row">
+                            <div class="order__btn">Оформить заказ</div>
+                            <div class="clear__btn">Очистить корзину</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            {{template "footer"}}
+        </footer>
+        <script src="/static/js/cart.js"></script>
+        <script src="/static/js/burger.js"></script>
+    </div>
+</body>
+</html>
+{{end}}

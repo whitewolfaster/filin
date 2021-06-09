@@ -1,0 +1,216 @@
+{{define "home"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/simple-adaptive-slider.css">
+    <script src="/static/js/simple-adaptive-slider.min.js"></script>
+    <title>ФИЛИН - книжный интернет магазин</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            {{template "header" .}}
+        </header>
+        <main>
+            <div class="book_of_month">
+                <div class="container">
+                    <div class="slider" id="book_of_month_slider">
+                        <div class="slider__wrapper">
+                            <div class="slider__items">
+                                {{range .BooksOfMonth}}
+                                <div class="slider__item">
+                                    <div class="book">
+                                        <div class="book__card">
+                                            <div class="book__card__row">
+                                                <div class="book_of_month_label">
+                                                    <img src="/static/img/book_of_month.png" alt="">
+                                                </div>
+                                                <div class="book__cover">
+                                                    <img src="{{.CoverPath}}" alt="">
+                                                </div>
+                                                <div class="book__body">
+                                                    <div class="book__name">{{.Name}}</div>
+                                                    <div class="book_info">
+                                                        <div class="book__author">
+                                                            <span class="info__label">Автор: </span> {{.Author}}
+                                                        </div>
+                                                        <div class="book__pubhouse">
+                                                            <span class="info__label">Издательство: </span>
+                                                            {{.PubHouse}}
+                                                        </div>
+                                                        <div class="book__genres">
+                                                            <span class="info__label">Жанры: </span>
+                                                            {{.Genre}}
+                                                        </div>
+                                                        <div class="book__year"><span class="info__label">Год: </span>{{.Year}}</div>
+                                                        <div class="book_description">
+                                                            {{.Description}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="book__price">
+                                                        <div class="price">{{.Price}} руб.</div>
+                                                        <div class="cart_info none"></div>
+                                                        <div class="cart__btn" data-book-id="{{.ID}}">В корзину</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                {{end}}
+                            </div>
+                            <!-- Стрелки для перехода к предыдущему и следующему слайду -->
+                            <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
+                            <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="liders">
+                <div class="liders__title title">
+                    <div class="container">
+                        ЛИДЕРЫ ПРОДАЖ
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="slider" id="lider_slider">
+                        <div class="slider__wrapper">
+                            <div class="slider__items">
+                                {{range .BookLiders}}
+                                <div class="slider__item">
+                                    <div class="book">
+                                        <div class="book__card">
+                                            <div class="book__card__row">
+                                                <div class="book__cover">
+                                                    <img src="{{.CoverPath}}" alt="">
+                                                </div>
+                                                <div class="book__body">
+                                                    <div class="book__name">{{.Name}}</div>
+                                                    <div class="book_info">
+                                                        <div class="book__author">
+                                                            <span class="info__label">Автор: </span> {{.Author}}
+                                                        </div>
+                                                        <div class="book__pubhouse">
+                                                            <span class="info__label">Издательство: </span>
+                                                            {{.PubHouse}}
+                                                        </div>
+                                                        <div class="book__genres">
+                                                            <span class="info__label">Жанры: </span>
+                                                            {{.Genre}}
+                                                        </div>
+                                                        <div class="book__year"><span class="info__label">Год: </span>{{.Year}}</div>
+                                                        <div class="book_description">
+                                                            {{.Description}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="book__price">
+                                                        <div class="price">{{.Price}} руб.</div>
+                                                        <div class="cart_info none"></div>
+                                                        <div class="cart__btn" data-book-id="{{.ID}}">В корзину</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                {{end}}
+                            </div>
+                            <!-- Стрелки для перехода к предыдущему и следующему слайду -->
+                            <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
+                            <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about_us" id="about">
+                <div class="about_us__title title">
+                    <div class="container">
+                        О НАС
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="about_us__body">
+                        <p>Мы имеем многолетний опыт сотрудничества со всеми ведущими Российскими издательствами, что позволяет нам поддерживать постоянно широкий ассортимент литературы по доступным ценам.</p>
+
+                        <p>Мы стремимся удовлетворить самые разные потребности читателей. В ассортименте наших магазинов классическая литература и современная проза, художественная и учебная литература, методические материалы, книги для дома и семьи, энциклопедии и справочники, книги для детей самого разного возраста, подарочные, эксклюзивные издания и многое другое. Особое внимание уделяется новинкам книжного рынка.</p>
+
+                        <p>Наши консультанты доброжелательно и профессионально помогут покупателю сориентироваться и найти нужное в книжном многообразии.</p>
+
+                        <p>К услугам посетителей наших магазинов справочные службы, которые не только предоставят информацию о наличии книг по нашей сети, но и оформят заказ на редкую литературу без предоплаты.</p>
+
+                        <p>«ФИЛИН» рада предложить своим покупателям и самый широкий выбор сопутствующих товаров. Если вам нужна тетрадь или карандаш, открытка или развивающая игра для ребенка — приходите в наши магазины.</p>
+
+                        <p>Отдел оптовых продаж работает с представителями торгующих организаций, школ, вузов, родительских комитетов. Здесь вам предложат специальные цены и гибкую систему скидок.</p>
+
+                        <p>В наших магазинах вы откроете новые неизведанные миры, побываете в далёких странах, увидите прошлое и будущее… Вы откроете книги!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contacts" id="contacts">
+                <div class="contacts__title title">
+                    <div class="container">
+                        КОНТАКТЫ
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="contacts__row">
+                        <div class="contacts__col">
+                            <div class="contacts__line">
+                                <p>Справочно-информационная служба: </p>
+                                <p>(111) 111-11-11</p>
+                            </div>
+                            <div class="contacts__line">
+                                <p>Call-центр интернет-магазина: </p>
+                                <p>+7 (111) 111-11-11</p>
+                            </div>
+                            <div class="contacts__line">
+                                <p>Отдел по работе с юридическими лицами: </p>
+                                <p>mail@example.ru</p>
+                            </div>
+                            <div class="contacts__line">
+                                <p>Управление маркетинга и рекламы: </p>
+                                <p>(111) 111-11-11, mail@example.ru</p>
+                            </div>
+                            <div class="contacts__line">
+                                <p>Управление закупками: </p>
+                                <p>(111) 111-11-11</p>
+                            </div>
+                        </div>
+                        <div class="contacts__col">
+                            <div class="contacts__line">
+                                OOO "ФИЛИН"
+                            </div>
+                            <div class="contacts__line">
+                                <p>Юридический адрес: </p>
+                                <p>191186, РФ, Санкт-Петербург, Невский проспект, д. 28, литер А </p>
+                            </div>
+                            <div class="contacts__line">
+                                <p>Телефон: </p>
+                                <p>111-11-11</p>
+                            </div>
+                            <div class="contacts__line">
+                                <p>ОГРН 1111111111111</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="map">
+                <div class="container">
+                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aeecd15cdf452b302c78d53a7ee7a26a8223362e8b1696e436c95a9d44daa7b66&amp;width=100%25&amp;height=450&amp;lang=ru_RU&amp;scroll=false"></script>
+                </div>
+            </div>
+        </main>
+        <footer>
+            {{template "footer"}}
+        </footer>
+    </div>
+    <script src="/static/js/home.js"></script>
+    <script src="/static/js/burger.js"></script>
+</body>
+</html>
+{{end}}

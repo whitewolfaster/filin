@@ -1,0 +1,105 @@
+{{define "catalog"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>ФИЛИН - книжный интернет магазин</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            {{template "header" .}}
+        </header>
+
+        <main class="main__bg">
+            <div class="container">
+                <div class="main__row">
+                    <div class="sidebar">
+                        <div class="filtres">
+                            <div class="filtres__title">
+                                Фильтры
+                            </div>
+                            <div class="filtres__content">
+                                <div class="genres">
+                                    <div class="genres__title">
+                                        По жанрам:
+                                    </div>
+                                    <div class="genres__list" id="genres__list">
+                                        {{range .Genres}}
+                                        <div class="genres__list_row">
+                                            <input type="checkbox" name="genre" value="{{.Name}}">
+                                            <span>{{.Name}}</span>
+                                        </div>
+                                        {{end}}
+                                    </div>
+                                    <div class="genres__buttons">
+                                        <div class="button__show">
+                                            Показать
+                                        </div>
+                                        <div class="button__reset">
+                                            Сбросить
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book__container" id="catalog">
+                        <div class="search__row">
+                            <input type="text" name="search">
+                            <div class="button__search">
+                                Найти
+                            </div>
+                        </div>
+                        <div class="info none"></div>
+                        {{range .Books}}
+                        <div class="book__card" data-genres="{{.Genre}}">
+                            <div class="book__card__row">
+                                <div class="book__cover">
+                                    <img src="{{.CoverPath}}" alt="">
+                                </div>
+                                <div class="book__body">
+                                    <div class="book__name">{{.Name}}</div>
+                                    <div class="book_info">
+                                        <div class="book__author">
+                                            <span class="info__label">Автор: </span> {{.Author}}
+                                        </div>
+                                        <div class="book__pubhouse">
+                                            <span class="info__label">Издательство: </span>
+                                            {{.PubHouse}}
+                                        </div>
+                                        <div class="book__genres">
+                                            <span class="info__label">Жанры: </span>
+                                            {{.Genre}}
+                                        </div>
+                                        <div class="book__year"><span class="info__label">Год: </span>{{.Year}}</div>
+                                        <div class="book_description">
+                                            {{.Description}}
+                                        </div>
+                                    </div>
+                                    <div class="book__price">
+                                        <div class="price">{{.Price}} руб.</div>
+                                        <div class="cart_info none"></div>
+                                        <div class="cart__btn" data-book-id="{{.ID}}">В корзину</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            {{template "footer"}}
+        </footer>
+    </div>
+    <script src="/static/js/catalog.js"></script>
+    <script src="/static/js/burger.js"></script>
+</body>
+</html>
+{{end}}

@@ -1,0 +1,32 @@
+{{define "header"}}
+<div class="header__row header_dark">
+    <div class="container flex-row row-jc-c">
+        <a href="/">
+            <img src="../../static/img/Logo.png" alt="ФИЛИН" class="logo">
+        </a>
+    </div>
+</div>
+<div class="header__row header_white">
+    <div class="container">
+        <div class="naw__row flex-row row-jc-sb">
+            <nav class="header__nav">
+                <div class="header__nav_item">
+                    <a href="#about" name="about_us">О нас</a>
+                </div>
+                <div class="header__nav_item">
+                    <a href="#contacts" name="contacts">Контакты</a>
+                </div>
+                <div class="header__nav_item">
+                    <a href="/catalog">Каталог</a>
+                </div>
+            </nav>
+            <div class="auth">
+                {{template "auth" .}}
+            </div>
+        </div>
+        <div class="burger_button">
+            <span></span>
+        </div>
+    </div>
+</div>
+{{end}}

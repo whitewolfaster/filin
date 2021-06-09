@@ -1,0 +1,36 @@
+{{define "admin_list"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <title>ФИЛИН</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            {{template "header" .}}
+        </header>
+        <main class="main__bg">
+            <div class="container">
+                <div class="card">
+                    <div class="info none"></div>
+                    {{range .Admins}}
+                    <div class="card__row">
+                        <div class="admin__row">
+                            <div class="admin__login">{{.Login}}</div>
+                            <input type="text" id="key">
+                            <div class="delete__btn" data-id="{{.ID}}">Удалить</div>
+                        </div>
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/js/admin/admin_list.js"></script>
+</body>
+</html>
+{{end}}
