@@ -203,3 +203,14 @@ func (br *BookRepository) CreateGenre(genre *models.Genre) error {
 	}
 	return nil
 }
+
+func (br *BookRepository) DeleteGenre(genre *models.Genre) error {
+	_, err := br.repository.db.Exec(
+		"DELETE FROM genres WHERE name=$1",
+		genre.Name,
+	)
+	if err != nil {
+		return err
+	}
+	return nil
+}

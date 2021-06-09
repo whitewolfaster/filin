@@ -16,6 +16,7 @@ type BookRepository interface {
 	BookLiders() (*[]string, error)
 	BooksOfMonth() (*[]string, error)
 	CreateGenre(*models.Genre) error
+	DeleteGenre(*models.Genre) error
 }
 
 type UserRepository interface {
