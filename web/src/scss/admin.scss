@@ -406,6 +406,12 @@ textarea {
     margin-right: 10px;
 }
 
+.genre_list__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 @media (max-width: 1100px) {
     .book {
         padding: 30px 70px;
