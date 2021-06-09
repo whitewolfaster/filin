@@ -385,6 +385,27 @@ textarea {
     line-height: 38px;
 }
 
+.create_genre__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add__btn {
+    background: #1394A6;
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px 30px;
+    font-weight: 300;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.genre {
+    margin-right: 10px;
+}
+
 @media (max-width: 1100px) {
     .book {
         padding: 30px 70px;
