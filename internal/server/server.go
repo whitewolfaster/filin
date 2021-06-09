@@ -125,6 +125,7 @@ func (server *Server) configureRouter() {
 
 	// Web site routes
 
+	server.router.HandleFunc("/admin/genres_list", server.APIauth(server.handleAdminGenresList())).Methods(http.MethodGet)
 	server.router.HandleFunc("/admin/createBook", server.APIauth(server.handleAdminCreateBook())).Methods(http.MethodGet)
 	server.router.HandleFunc("/admin/changepswd", server.APIauth(server.handleAdminChangePSWD())).Methods(http.MethodGet)
 	server.router.HandleFunc("/admin/login", server.APIauth(server.handleAdminLogin())).Methods(http.MethodGet)
@@ -324,6 +325,43 @@ func (server *Server) handleCreateAdmin() http.HandlerFunc {
 			return
 		}
 		err = tmpl.ExecuteTemplate(w, "create_admin", data)
+		if err != nil {
+			server.error(w, r, http.StatusInternalServerError, err)
+			return
+		}
+	}
+}
+
+func (server *Server) handleAdminGenresList() http.HandlerFunc {
+	type TemplateData struct {
+		Login  string
+		Genres []models.Genre
+	}
+	return func(w http.ResponseWriter, r *http.Request) {
+		ctx := r.Context().Value(ctxUserKey)
+		if ctx == nil {
+			http.Redirect(w, r, "/admin/login", http.StatusTemporaryRedirect)
+			return
+		}
+		admin := ctx.(*models.Admin)
+		data := TemplateData{
+			Login: admin.Login,
+		}
+		genres, err := server.repository.Books().GetAllGenres()
+		if err != nil {
+			server.error(w, r, http.StatusInternalServerError, err)
+			return
+		}
+		data.Genres = genres
+		tmpl, err := template.ParseFiles("./web/templates/admin/genre_list.html",
+			"./web/templates/admin/header.html",
+			"./web/templates/admin/auth.html",
+		)
+		if err != nil {
+			server.error(w, r, http.StatusInternalServerError, err)
+			return
+		}
+		err = tmpl.ExecuteTemplate(w, "genre_list", data)
 		if err != nil {
 			server.error(w, r, http.StatusInternalServerError, err)
 			return
