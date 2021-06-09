@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
             request.setRequestHeader('Content-Type', 'application/json');
             request.send(json);
             if (request.status === 200) {
-                window.location = "/admin/genre_list";
+                window.location = "/admin/genres_list";
             } else {
                 info.innerText = request.responseText;
                 info.classList.add("info_red");
