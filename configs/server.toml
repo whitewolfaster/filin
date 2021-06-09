@@ -1,4 +1,4 @@
-port = ":8080"
+port = "8080"
 log_level = "debug"
 database_url = "./filin.db"
 web_cover_path = "/static/img/covers/"
