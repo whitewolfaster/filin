@@ -106,6 +106,7 @@ func (server *Server) configureRouter() {
 	server.router.HandleFunc("/api/private/createAdmin", server.APICreateAdmin()).Methods(http.MethodPost)
 	server.router.HandleFunc("/api/private/deleteAdmin", server.APIDeleteAdmin()).Methods(http.MethodPost)
 	server.router.HandleFunc("/api/private/GetAllAdmins", server.APIauth(server.APIGetAllAdmins())).Methods(http.MethodGet)
+	server.router.HandleFunc("/api/private/createGenre", server.APIauth(server.APICreateGenre())).Methods(http.MethodPost)
 
 	server.router.HandleFunc("/api/public/getAllBooks", server.APIGetAllBooks()).Methods(http.MethodGet)
 	server.router.HandleFunc("/api/public/getAllGenres", server.APIGetAllGenres()).Methods(http.MethodGet)
@@ -1318,6 +1319,28 @@ func (server *Server) APIDeleteBook() http.HandlerFunc {
 			return
 		}
 		server.respond(w, r, http.StatusOK, nil)
+	}
+}
+
+func (server *Server) APICreateGenre() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		ctx := r.Context().Value(ctxUserKey)
+		if ctx == nil {
+			server.error(w, r, http.StatusUnauthorized, ErrNullContext)
+			return
+		}
+		genre := models.Genre{}
+		if err := json.NewDecoder(r.Body).Decode(&genre); err != nil {
+			server.error(w, r, http.StatusBadRequest, err)
+			return
+		}
+		fmt.Printf("Genre name from request: %s", genre.Name)
+		err := server.repository.Books().CreateGenre(&genre)
+		if err != nil {
+			server.error(w, r, http.StatusInternalServerError, err)
+			return
+		}
+		server.respond(w, r, http.StatusCreated, nil)
 	}
 }
 
