@@ -1,3 +1,12 @@
+function IsLoggedIn() {
+    var request = new XMLHttpRequest();
+    request.open("GET", "https://filin-shop.herokuapp.com/api/public/isLoggedIn", false);
+    request.send();
+    var resp = request.response;
+    var data = JSON.parse(resp);
+    return data.isLoggedIn;
+}
+
 function PasswordValidate(password) {
     if(password.length < 8 || password.length > 30) {
          return false;
@@ -7,7 +16,20 @@ function PasswordValidate(password) {
 }
 
 
+
+var isLoggedIn = IsLoggedIn();
+
+
 document.addEventListener("DOMContentLoaded", function() {
+    if (isLoggedIn === "true") {
+        var logout__btn = document.getElementsByClassName("logout__btn")[0];
+            logout__btn.addEventListener("click", function() {
+                var request = new XMLHttpRequest();
+                    request.open("GET", "https://filin-shop.herokuapp.com/api/public/deleteSession", false);
+                    request.send();
+                    window.location= "/";
+            })
+    }
     var about_us = document.getElementsByName("about_us")[0];
     var contacts = document.getElementsByName("contacts")[0];
     var delivery = document.getElementsByName("delivery")[0];
